@@ -26,13 +26,15 @@ class MyRequestProcesor:
 
 def main():
     processor = MyRequestProcesor()
+    how_to_exit_message = "Requests processing system is launched and working! Press 'Ctrl+C' to exit\n"
 
-    print("Requests processing system is launched and working! Press 'Ctrl+C' to exit\n")
+    print(how_to_exit_message)
 
     try:
         while True:
             processor.generate_request()
             processor.process_request()
+            print(how_to_exit_message)
             time.sleep(1)   # waiting between cycles
     except KeyboardInterrupt:
         print("\nSystem is stopped by user!")
