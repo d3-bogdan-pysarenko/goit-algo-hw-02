@@ -1,22 +1,23 @@
 class Stack:
+    """CopyPaste from Class Notes"""
     def __init__(self):
         self.stack = []
 
-    # Додавання елемента до стеку
+    # Add element to stack
     def push(self, item):
         self.stack.append(item)
 
-    # Видалення елемента зі стеку
+    # Removing element from stack
     def pop(self):
         if len(self.stack) < 1:
             return None
         return self.stack.pop()
 
-    # Перевірка, чи стек порожній
+    # checking is stack empty
     def is_empty(self):
         return len(self.stack) == 0
 
-    # Перегляд верхнього елемента стеку без його видалення
+    # checking last stack's element
     def peek(self):
         if not self.is_empty():
             return self.stack[-1]
@@ -30,34 +31,35 @@ def check_delimiters(text: str) -> str:
     pairs = {')': '(', ']': '[', '}': '{'}
 
     for char in text:
-        # Якщо відкрита дужка
+        # for opening bracket
         if char in opening:
             stack.push(char)
 
-        # Якщо закрита дужка
+        # for closing bracket
         elif char in closing:
             if stack.is_empty():
-                return "Несиметрично"
+                return "Symetrical"
 
             top = stack.pop()
 
-            # Якщо типи дужок не співпадають
+            # if types of brackets is different
             if pairs[char] != top:
-                return "Несиметрично"
+                return "Non-symetrical"
 
-    # Після проходу рядка стек має бути порожній
+    # check if stack empty to define symmetry
     if not stack.is_empty():
-        return "Несиметрично"
+        return "Non-symetrical"
 
-    return "Симетрично"
+    return "Symetrical"
+
+def show_if_symetrical(text: str) -> str:
+    print(f"{text}: {check_delimiters(text)}")
 
 
-# ---- Приклади ----
-tests = [
-    "( ){[ 1 ]( 1 + 3 )( ){ }}",
-    "( 23 ( 2 - 3);",
-    "( 11 }"
-]
-
-for t in tests:
-    print(f"{t}: {check_delimiters(t)}")
+# ---- Testing time ----
+row1 =  "( ){[ 1 ]( 1 + 3 )( ){ }}"
+row2 =  "( 23 ( 2 - 3);"
+row3 =  "( ){[ 1 ]( 1 + 3 )( ){ }}"
+show_if_symetrical(row1)
+show_if_symetrical(row2)
+show_if_symetrical(row3)
