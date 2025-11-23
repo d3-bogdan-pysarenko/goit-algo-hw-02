@@ -1,34 +1,62 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+# Додавання елемента до стеку
+def push(self, item):
+    self.stack.append(item)
+
+# Видалення елемента зі стеку
+def pop(self):
+    if len(self.stack) < 1:
+        return None
+    return self.stack.pop()
+
+# Перевірка, чи стек порожній
+def is_empty(self):
+    return len(self.stack) == 0
+
+# Перегляд верхнього елемента стеку без його видалення
+def peek(self):
+    if not self.is_empty():
+        return self.stack[-1]
+
+
+
+
+
+
 def check_delimiters(text: str) -> str:
-    stack = []
+    stack = Stack()
+
     opening = "([{"
     closing = ")]}"
     pairs = {')': '(', ']': '[', '}': '{'}
 
     for char in text:
-        # якщо символ — відкрита дужка → додаємо у стек
+        # Якщо відкрита дужка
         if char in opening:
-            stack.append(char)
+            stack.push(char)
 
-        # якщо символ — закрита дужка → перевіряємо
+        # Якщо закрита дужка
         elif char in closing:
-            # якщо стек порожній — немає відповідної відкритої
-            if not stack:
+            if stack.is_empty():
                 return "Несиметрично"
 
             top = stack.pop()
 
-            # перевіряємо, чи відповідає тип дужки
+            # Якщо типи дужок не співпадають
             if pairs[char] != top:
                 return "Несиметрично"
 
-    # після проходу рядка стек має бути порожнім
-    if stack:
+    # Після проходу рядка стек має бути порожній
+    if not stack.is_empty():
         return "Несиметрично"
 
     return "Симетрично"
 
 
-# ---- Приклади використання ----
+# ---- Приклади ----
 tests = [
     "( ){[ 1 ]( 1 + 3 )( ){ }}",
     "( 23 ( 2 - 3);",
@@ -37,3 +65,4 @@ tests = [
 
 for t in tests:
     print(f"{t}: {check_delimiters(t)}")
+    
