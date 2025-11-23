@@ -2,40 +2,40 @@ import time
 from queue import Queue
 
 
-class RequestProcessor:
+class MyRequestProcesor:
     def __init__(self):
         self.queue = Queue()
         self.request_id = 0
 
     def generate_request(self):
-        """Генерує нову заявку і додає її в чергу."""
+        """Generates new request and adds it to the queue"""
         self.request_id += 1
-        request = f"Заявка #{self.request_id}"
-        print(f"[CREATE] Створено: {request}")
+        request = f"Request #{self.request_id}"
+        print(f"[CREATE] Created: {request}")
         self.queue.put(request)
 
     def process_request(self):
-        """Обробляє заявку, якщо вона є в черзі."""
+        """Processes the request if it is inthe queue"""
         if not self.queue.empty():
             request = self.queue.get()
-            print(f"[PROCESS] Обробка: {request}")
-            time.sleep(0.5)  # імітація тривалості обробки
+            print(f"[PROCESS] Processing: {request}")
+            time.sleep(0.5)  # processing imitation
         else:
-            print("[INFO] Черга порожня — немає заявок для обробки.")
+            print("[INFO] Queue is empty — there is nothing to process")
 
 
 def main():
-    processor = RequestProcessor()
+    processor = MyRequestProcesor()
 
-    print("Система обробки заявок запущена. Натисніть Ctrl+C для виходу.\n")
+    print("Requests processing system is launched and working! Press 'Ctrl+C' to exit\n")
 
     try:
         while True:
             processor.generate_request()
             processor.process_request()
-            time.sleep(1)   # затримка між циклами
+            time.sleep(1)   # waiting between cycles
     except KeyboardInterrupt:
-        print("\nПрограму завершено користувачем.")
+        print("\nSystem is stopped by user!")
 
 
 if __name__ == "__main__":
