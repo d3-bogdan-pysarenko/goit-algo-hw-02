@@ -14,15 +14,19 @@ def is_it_palindrome(text: str) -> bool:
 
     return True
 
+def show_if_palindrome(text: str):
+    print(f"{text} -> {is_it_palindrome(text)}")
+
 
 # ---- Testing time ----
-tests = [
-    "Racecar",
-    "A man a plan a canal Panama",
-    "Hello",
-    "Was it a car or a cat I saw",
-    "No lemon, no melon"
-]
+string1 = "Racecar"
+string2 = "Onno"
+string3 = "Hello"
+string4 = "1b1"
+string5 = "my-Ym"
 
-for t in tests:
-    print(f"{t!r} -> {is_it_palindrome(t)}")
+show_if_palindrome(string1)
+show_if_palindrome(string2)
+show_if_palindrome(string3)
+show_if_palindrome(string4)
+show_if_palindrome(string5)

@@ -52,7 +52,7 @@ def check_delimiters(text: str) -> str:
 
     return "Symetrical"
 
-def show_if_symetrical(text: str) -> str:
+def show_if_symetrical(text: str):
     print(f"{text}: {check_delimiters(text)}")
 
 
